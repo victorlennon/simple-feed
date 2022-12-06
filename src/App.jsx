@@ -4,6 +4,38 @@ import { Sidebar } from './components/Sidebar'
 import './global.css'
 import styles from './App.module.css'
 
+//simulating backend response for posts
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/diego3g.png',
+      name: 'Diego Fernandes',
+      role: 'CTO @ Rocketseat'
+    },
+    content: [
+      { Type: 'paragraph', content: 'This is the first line' },
+      { Type: 'paragraph', content: 'This is the second line' },
+      { Type: 'paragraph', content: 'This is the third line' }
+    ],
+    publishedAt: new Date('2022-05-03 20:00:01')
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/maykbrito.png',
+      name: 'Mayk Brito',
+      role: 'Educator @ Rocketseat'
+    },
+    content: [
+      { Type: 'paragraph', content: 'This is the first line' },
+      { Type: 'paragraph', content: 'This is the second line' },
+      { Type: 'paragraph', content: 'This is the third line' }
+    ],
+    publishedAt: new Date('2022-05-10 20:00:01')
+  }
+]
+
 export function App() {
   return (
     <>
@@ -11,13 +43,9 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post author="Victor" content="lorem ipsum dolor sit amet, consectetur adipisicing el" />
-          <Post
-            author="Fulano"
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur incidunt earum vitae deserunt aut esse illo officiis aspernatur ratione quidem fugiat voluptate dolorem eius accusamus, odit provident recusandae quis quas.
-          Asperiores laudantium illo tenetur harum quibusdam hic natus nulla ex! Cum deleniti odit, id similique vitae quasi libero minus laboriosam optio. Quidem aliquam sed soluta vitae reiciendis odio, accusantium explicabo?
-          Optio assumenda reiciendis, vero deserunt veritatis accusamus impedit quod nostrum eum id necessitatibus ea deleniti quas velit eligendi fugit, et molestiae? Totam dolorem qui magni reiciendis illum fuga quaerat rerum!"
-          />
+          {posts.map(post => {
+            return <Post author={post.author} content={post.content} publishedAt={post.publishedAt} />
+          })}
         </main>
       </div>
     </>
