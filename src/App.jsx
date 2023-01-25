@@ -11,29 +11,29 @@ const posts = [
     author: {
       avatarUrl: 'https://github.com/diego3g.png',
       name: 'Diego Fernandes',
-      role: 'CTO @ Rocketseat'
+      role: 'CTO @ Rocketseat',
     },
     content: [
-      { Type: 'paragraph', content: 'This is the first line' },
-      { Type: 'paragraph', content: 'This is the second line' },
-      { Type: 'paragraph', content: 'This is the third line' }
+      { type: 'paragraph', content: 'This is the first line' },
+      { type: 'paragraph', content: 'This is the second line' },
+      { type: 'link', content: 'https://github.com/diego3g.png' },
     ],
-    publishedAt: new Date('2022-05-03 20:00:01')
+    publishedAt: new Date('2022-05-03 20:01:01'),
   },
   {
     id: 2,
     author: {
       avatarUrl: 'https://github.com/maykbrito.png',
       name: 'Mayk Brito',
-      role: 'Educator @ Rocketseat'
+      role: 'Educator @ Rocketseat',
     },
     content: [
-      { Type: 'paragraph', content: 'This is the first line' },
-      { Type: 'paragraph', content: 'This is the second line' },
-      { Type: 'paragraph', content: 'This is the third line' }
+      { type: 'paragraph', content: 'This is the first line' },
+      { type: 'paragraph', content: 'This is the second line' },
+      { type: 'paragraph', content: 'This is the third line' },
     ],
-    publishedAt: new Date('2022-05-10 20:00:01')
-  }
+    publishedAt: new Date('2022-12-7 13:41:01'),
+  },
 ]
 
 export function App() {

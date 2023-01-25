@@ -1,9 +1,21 @@
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
+import { format } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 import styles from './Post.module.css'
 
 // export function Post(props) { changing to destructuring below
-export function Post({ author, publishedAt }) {
+export function Post({ author, publishedAt, content }) {
+  const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR,
+  })
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSufix: true,
+  })
+
   return (
     <article className={styles.post}>
       <header>
@@ -13,23 +25,23 @@ export function Post({ author, publishedAt }) {
             <strong>{author.name}</strong>
             <span>{author.role}</span>
           </div>
-          <time title="24 de outubro às 22:41" dateTime="2022-10-24 22:41:00">
-            Publicado há 1 hora
+          <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>
+            {publishedDateRelativeToNow}
           </time>
         </div>
       </header>
       <div className={styles.content}>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi tempore quidem molestiae architecto, sint
-          corrupti ab maxime omnis! Cum rerum quisquam harum odio laboriosam. Repudiandae nulla officia quam reiciendis
-          rerum.
-        </p>
-        <p>
-          <a href="">link.com.br</a>
-        </p>
-        <p>
-          <a href="">#lorem #ipsum</a>
-        </p>
+        {content.map(line => {
+          if (line.type === 'paragraph') {
+            return <p>{line.content}</p>
+          } else if (line.type === 'link') {
+            return (
+              <p>
+                <a href="#">{line.content}</a>
+              </p>
+            )
+          }
+        })}
       </div>
       <form className={styles.commentForm} action="">
         <strong>Deixe seu feedback</strong>
